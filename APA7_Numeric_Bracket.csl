@@ -1,33 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<style xmlns="http://purl.org/net/xbiblio/csl" version="1.0" class="in-text" default-locale="en-US">
+<style xmlns="http://purl.org/net/xbiblio/csl"
+       version="1.0"
+       class="in-text"
+       default-locale="en-US">
   <info>
-    <title>APA 7th Edition - Numeric Bracket (Andalan)</title>
-    <id>http://www.zotero.org/styles/apa-7th-numeric-bracket-andalan</id>
-    <link href="http://www.zotero.org/styles/apa-7th-numeric-bracket-andalan" rel="self"/>
-    <link href="http://www.zotero.org/styles/apa" rel="template"/>
+    <title>APA 7 Numeric Bracket - Andalan</title>
+    <id>http://www.zotero.org/styles/apa-7-numeric-bracket-andalan</id>
+    <link href="http://www.zotero.org/styles/apa-7-numeric-bracket-andalan" rel="self"/>
     <author>
-      <name>Custom style</name>
+      <name>Custom CSL</name>
     </author>
     <category citation-format="numeric"/>
-    <summary>Numeric bracket citations in order of appearance with an APA 7-inspired reference list.</summary>
+    <summary>Numeric bracket citations in order of appearance with an APA-inspired bibliography.</summary>
     <updated>2026-11-22T00:00:00+00:00</updated>
   </info>
 
-  <locale xml:lang="en">
-    <terms>
-      <term name="and"> &amp; </term>
-      <term name="et-al">et al.</term>
-      <term name="page" form="short">p.</term>
-      <term name="pages" form="short">pp.</term>
-      <term name="editor" form="short">Ed.</term>
-      <term name="editors" form="short">Eds.</term>
-      <term name="no date">n.d.</term>
-    </terms>
-  </locale>
-
   <macro name="author">
     <names variable="author">
-      <name name-as-sort-order="all" sort-separator=", " initialize-with=". " delimiter=", " delimiter-precedes-last="always"/>
+      <name name-as-sort-order="all"
+            sort-separator=", "
+            initialize-with=". "
+            delimiter=", "
+            delimiter-precedes-last="always"/>
       <substitute>
         <names variable="editor"/>
         <text variable="title"/>
@@ -42,7 +36,9 @@
           <date-part name="year"/>
         </date>
       </if>
-      <else><text term="no date"/></else>
+      <else>
+        <text value="n.d."/>
+      </else>
     </choose>
   </macro>
 
@@ -51,9 +47,6 @@
       <if type="article-journal article-magazine article-newspaper" match="any">
         <text variable="title"/>
       </if>
-      <else-if type="paper-conference" match="any">
-        <text variable="title"/>
-      </else-if>
       <else>
         <text variable="title" font-style="italic"/>
       </else>
@@ -74,22 +67,17 @@
       </if>
       <else-if type="chapter paper-conference" match="any">
         <group delimiter=", ">
-          <text term="in" text-case="lowercase"/>
-          <names variable="editor" prefix=" " suffix=" ">
-            <name name-as-sort-order="all" sort-separator=", " initialize-with=". " delimiter=", " delimiter-precedes-last="always"/>
-            <label form="short" prefix=" (" suffix=")"/>
-          </names>
           <text variable="container-title" font-style="italic"/>
-          <text variable="page" prefix="(pp. "/>
+          <text variable="page" prefix="pp. "/>
         </group>
       </else-if>
-      <else-if variable="publisher">
+      <else>
         <text variable="publisher"/>
-      </else-if>
+      </else>
     </choose>
   </macro>
 
-  <macro name="doi-url">
+  <macro name="identifier">
     <choose>
       <if variable="DOI">
         <text variable="DOI" prefix="https://doi.org/"/>
@@ -104,14 +92,14 @@
     <sort>
       <key variable="citation-number"/>
     </sort>
-    <layout prefix="" suffix="" delimiter=", ">
+    <layout delimiter=", ">
       <group prefix="[" suffix="]">
         <text variable="citation-number"/>
       </group>
     </layout>
   </citation>
 
-  <bibliography hanging-indent="true" entry-spacing="0" line-spacing="1">
+  <bibliography hanging-indent="true" entry-spacing="0">
     <sort>
       <key variable="citation-number"/>
     </sort>
@@ -123,7 +111,7 @@
         <text macro="title"/>
         <text macro="container"/>
       </group>
-      <text macro="doi-url" prefix=". "/>
+      <text macro="identifier" prefix=". "/>
     </layout>
   </bibliography>
 </style>
